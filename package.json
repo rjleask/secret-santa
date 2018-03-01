@@ -1,0 +1,27 @@
+{
+  "name": "secret-santa",
+  "version": "1.0.0",
+  "description": "MERN stack app that brings secret santa online to you and your family",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjleask/secret-santa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjleask/secret-santa/issues"
+  },
+  "homepage": "https://github.com/rjleask/secret-santa#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "path": "^0.12.7",
+    "sequelize": "^4.35.1"
+  }
+}
