@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const exphbs = require("express-handlebars");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-// const db = require("./models");
+const db = require("./models");
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require("./routes/index.js")(app);
 
 let PORT = process.env.PORT || 3000;
-// db.sequelize.sync({ force: false }).then(function() {
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+db.sequelize.sync({ force: false }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
-// });

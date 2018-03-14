@@ -1,1 +1,19 @@
 <p>Hello World!</p>
+<input type="text" class="username" placeholder="Email">
+<input type="text" class="password" placeholder="Password">
+<input type="text" class="users-name" placeholder="Name">
+
+<button type="submit" class="login-btn">Login</button>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+//adding user on button click
+  $(".login-btn").on("click",()=>{
+    let loginObj = {
+      username:$(".username").val(),
+      password:$(".password").val(),
+      name:$(".users-name").val()
+    }
+    $.post("/login", loginObj,(res) => {
+    })
+  })
+</script>
