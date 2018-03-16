@@ -27,4 +27,7 @@ module.exports = function(app) {
       console.log("good to go");
     });
   });
+  app.post("/create", function(req, res) {
+    console.log("this " + req.body.groupName);
+  });
 };
