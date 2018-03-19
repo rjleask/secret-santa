@@ -2,8 +2,12 @@
   "name": "secret-santa",
   "version": "1.0.0",
   "description": "MERN stack app that brings secret santa online to you and your family",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,13 +20,16 @@
     "url": "https://github.com/rjleask/secret-santa/issues"
   },
   "homepage": "https://github.com/rjleask/secret-santa#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
-    "express-handlebars": "^3.0.0",
     "mysql2": "^1.5.2",
     "path": "^0.12.7",
+    "axios": "^0.17.0",
     "sequelize": "^4.35.1"
   }
 }

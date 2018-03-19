@@ -1,25 +1,20 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const exphbs = require("express-handlebars");
 const path = require("path");
-const cookieParser = require("cookie-parser");
 const db = require("./models");
+const routes = require("./routes");
 
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-app.use(express.static(__dirname + "/public/assets"));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static("client/build"));
+app.use(routes);
 
 // // Override with POST having ?_method=DELETE
 // app.use(methodOverride("_method"));
 // require("./routes/user-api.js")(app);
 // require("./routes/settings-api.js")(app);
-require("./routes/index.js")(app);
-
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3001;
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
