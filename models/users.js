@@ -4,6 +4,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+    userCookie: {
+      type: DataTypes.STRING
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: true

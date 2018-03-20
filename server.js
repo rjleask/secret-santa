@@ -4,10 +4,20 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const db = require("./models");
 const routes = require("./routes");
+const cookieSession = require("cookie-session");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("client/build"));
+app.use(
+  cookieSession({
+    // cookie expires after a day
+    name: "user",
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: "secretcookie",
+    httpOnly: false
+  })
+);
 app.use(routes);
 
 // // Override with POST having ?_method=DELETE
