@@ -1,3 +1,7 @@
 var axios = require("axios");
 
-export default {};
+export default {
+  getUserInfo: function() {
+    return axios.get(`/api/profile/user/unique`);
+  }
+};

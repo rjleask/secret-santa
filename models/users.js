@@ -4,16 +4,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    userCookie: {
+    googleId: {
       type: DataTypes.STRING
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: true
+    userCookie: {
+      type: DataTypes.STRING
     }
   });
   // joining user with groups tables

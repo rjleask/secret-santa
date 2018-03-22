@@ -5,6 +5,10 @@ const path = require("path");
 const db = require("./models");
 const routes = require("./routes");
 const cookieSession = require("cookie-session");
+const passport = require("passport");
+const passportSetup = require("./config/passport-setup");
+let keys = require("./config/keys");
+let cook = keys.session.cookieKey;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -14,16 +18,16 @@ app.use(
     // cookie expires after a day
     name: "user",
     maxAge: 24 * 60 * 60 * 1000,
-    keys: "secretcookie",
+    keys: [cook],
     httpOnly: false
   })
 );
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+// routes
 app.use(routes);
 
-// // Override with POST having ?_method=DELETE
-// app.use(methodOverride("_method"));
-// require("./routes/user-api.js")(app);
-// require("./routes/settings-api.js")(app);
 let PORT = process.env.PORT || 3001;
 db.sequelize.sync({ force: false }).then(function() {
   app.listen(PORT, function() {
