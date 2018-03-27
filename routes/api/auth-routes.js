@@ -32,6 +32,7 @@ router.get(
 // callback route for google to redirect to
 // hand control to passport to use code to grab profile info
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
+  console.log("got to redirect");
   res.redirect("http://localhost:3000/home");
 });
 

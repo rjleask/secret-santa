@@ -32,13 +32,21 @@ class Home extends Component {
       .catch(err => console.log(err));
   };
   render() {
-    return (
-      <div>
-        <h2>Santa!!!!!!</h2>
-        <Login />
-        <Logout />
-      </div>
-    );
+    if (this.state.cookie === false) {
+      return (
+        <div>
+          <h2>Santa!!!!!!</h2>
+          <Login />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>Santa!!!!!!</h2>
+          <Logout />
+        </div>
+      );
+    }
   }
 }
 

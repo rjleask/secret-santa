@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
 // when the cookie comes back from the browser find the user with that id
 // then pass on the user
 passport.deserializeUser((id, done) => {
-  User.findById(id).then(user => {
+  db.User.findById(id).then(user => {
     done(null, user);
   });
 });
@@ -32,7 +32,9 @@ passport.use(
       // console.log(User);
 
       db.User.findOne({
-        where: { googleId: profile.id }
+        where: {
+          googleId: profile.id
+        }
       }).then(currentUser => {
         if (currentUser) {
           // already exists
@@ -42,23 +44,28 @@ passport.use(
         } else {
           // if not add new user
           // makes new user and saves it to our database
-          // let data = {
-          //   username: profile.displayName,
-          //   googleId: profile.id
-          // };
-          // User.create(data).then(newUser => {
-          //   console.log("new user created: " + newUser);
-          //   done(null, newUser);
-          // });
-          new db.User({
-            username: profile.displayName,
-            googleId: profile.id
-          })
-            .save()
+          let user = new db.User();
+          user.username = profile.displayName;
+          user.googleId = profile.id;
+          user
+            .save(err => {
+              if (err) {
+                console.log(err);
+              }
+            })
             .then(newUser => {
-              console.log("new user created: " + newUser);
+              console.log("new user created " + newUser);
               done(null, newUser);
             });
+          // new db.User({
+          //   username: profile.displayName,
+          //   googleId: profile.id
+          // })
+          //   .save()
+          //   .then(newUser => {
+          //     console.log("new user created: " + newUser);
+          //     done(null, newUser);
+          //   });
         }
       });
     }
