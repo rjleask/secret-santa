@@ -1,6 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const db = require("../models");
+const User = require("../models/users");
 const keys = require("./keys");
 let google_client = keys.google.clientID;
 let google_secret = keys.google.clientSecret;
@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
 // when the cookie comes back from the browser find the user with that id
 // then pass on the user
 passport.deserializeUser((id, done) => {
-  db.User.findById(id).then(user => {
+  User.findById(id, (err, user) => {
     done(null, user);
   });
 });
@@ -31,7 +31,7 @@ passport.use(
       // check if user already existsc
       // console.log(User);
 
-      db.User.findOne({
+      User.findOne({
         where: {
           googleId: profile.id
         }
@@ -44,7 +44,7 @@ passport.use(
         } else {
           // if not add new user
           // makes new user and saves it to our database
-          let user = new db.User();
+          let user = new User();
           user.username = profile.displayName;
           user.googleId = profile.id;
           user
