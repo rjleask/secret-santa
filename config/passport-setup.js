@@ -5,7 +5,6 @@ const keys = require("./keys");
 let google_client = keys.google.clientID;
 let google_secret = keys.google.clientSecret;
 let url = "http://localhost:3001/api/auth/google/redirect";
-// }
 // user info that gets put into the cookie, takes in current/new user
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -30,6 +29,7 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       // check if user already existsc
       // console.log(User);
+      console.log(profile.id);
 
       User.findOne({
         where: {
