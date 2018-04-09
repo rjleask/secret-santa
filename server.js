@@ -5,8 +5,6 @@ const path = require("path");
 const db = require("./models");
 const routes = require("./routes");
 const cookieSession = require("cookie-session");
-const passport = require("passport");
-const passportSetup = require("./config/passport-setup");
 let keys = require("./config/keys");
 let cook = keys.session.cookieKey;
 
@@ -22,11 +20,12 @@ app.use(
     httpOnly: false
   })
 );
-// initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
+
 // routes
-app.use(routes);
+// app.use(routes);
+app.get("/api/auth/login", (req, res)=> {
+  res.json({bingo:"lets go!"})
+})
 
 let PORT = process.env.PORT || 3001;
 db.sequelize.sync({ force: false }).then(function() {

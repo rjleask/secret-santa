@@ -1,6 +1,6 @@
 import React from "react";
 let heroku = true;
-let url = "http://localhost:3001/api/auth/google";
+let url = "http://localhost:3001/api/auth/login";
 
 class Login extends React.Component {
   render() {

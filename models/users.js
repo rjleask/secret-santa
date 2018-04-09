@@ -4,9 +4,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    googleId: {
-      type: DataTypes.STRING
-    },
+    password:DataTypes.STRING,
     userCookie: {
       type: DataTypes.STRING
     }

@@ -10,27 +10,27 @@ class Home extends Component {
     cookie: false,
     username: ""
   };
-  componentDidMount() {
-    this.cookieCheck();
-  }
-  cookieCheck() {
-    if (document.cookie.length > 90) {
-      this.setState({ cookie: true });
-      this.getUserInfo();
-    } else {
-      this.setState({ cookie: false });
-    }
-  }
+  // componentDidMount() {
+  //   this.cookieCheck();
+  // }
+  // cookieCheck() {
+  //   if (document.cookie.length > 90) {
+  //     this.setState({ cookie: true });
+  //     this.getUserInfo();
+  //   } else {
+  //     this.setState({ cookie: false });
+  //   }
+  // }
 
-  getUserInfo = () => {
-    API.getUserInfo()
-      .then(res => {
-        this.setState({
-          username: res.data.username
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  // getUserInfo = () => {
+  //   API.getUserInfo()
+  //     .then(res => {
+  //       this.setState({
+  //         username: res.data.username
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
   render() {
     if (this.state.cookie === false) {
       return (
